@@ -1,28 +1,18 @@
 import random
 
-def is_valid_bonuskaart(code: str) -> bool:
-    if not code:
-        return False
-    if len(code) != 13:
-        return False
-    if not code.isdigit():
-        return False
-    if not code.startswith("26"):
-        return False
-    if code.startswith("0"):
-        return False
+def generate_valid_bonuskaart():
+    prefix = "2623030"  # 7 fixed digits
+    body = ''.join(str(random.randint(0, 9)) for _ in range(5))  # 5 random digits to make 12 total
+    partial = prefix + body
+
+    # Calculate the 13th digit (checksum)
     total = 0
-    weight = 1
-    for digit in code:
+    for i, digit in enumerate(partial):
+        weight = 3 if i % 2 else 1
         total += int(digit) * weight
-        weight = 3 if weight == 1 else 1
-    return total % 10 == 0
 
-def generate_bonuskaart_code():
-    while True:
-        base = "26" + "".join(random.choices("0123456789", k=11))
-        if is_valid_bonuskaart(base):
-            return base
+    check_digit = (10 - (total % 10)) % 10
+    return partial + str(check_digit)
 
-# Example use
-print(generate_bonuskaart_code())
+# Example usage:
+print(generate_valid_bonuskaart())
