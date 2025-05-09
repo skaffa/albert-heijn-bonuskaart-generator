@@ -1,6 +1,6 @@
 # albert-heijn-bonuskaart-generator
 
-> Today I decided to reverse engineer the algorithm behind the Albert Heijn Bonuskaart.
+> Today I decided to try and reverse engineer the algorithm behind the Albert Heijn Bonuskaart.
 
 ---
 
