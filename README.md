@@ -1,8 +1,6 @@
-# albert-heijn-bonuskaart-generator
+> I decided to try and reverse engineer the algorithm behind the Albert Heijn Bonuskaart.
 
-> Today I decided to try and reverse engineer the algorithm behind the Albert Heijn Bonuskaart.
-
-## In Short
+## In short
 
 Albert Heijn Bonuskaart numbers follow the GTIN-13/EAN-13 format, starting with a fixed `26` prefix, followed by 11 digits that pass a checksum validation.
 
@@ -14,6 +12,19 @@ Albert Heijn Bonuskaart numbers follow the GTIN-13/EAN-13 format, starting with 
 
 This project generates fully valid Bonuskaart numbers using known valid prefix ranges and proper checksum calculation.
 
+## Usage & Live Demo
+
+You can use the tool directly via the [live page](https://skaffa.github.io/albert-heijn-bonuskaart-generator).
+Originally developed in Python, the project was later ported to HTML/CSS/JavaScript for easier access and cross-device compatibility.
+
+To run the original Python script locally:
+
+1. Download `generator.py`
+2. Run it using Python 3:
+
+   ```bash
+   python3 generator.py
+   ```
 
 ## Info
 If you want to make sure for yourself that the codes are valid, go to https://www.ah.nl/klantenkaarten/bonuskaart and make an account. Then edit your card number for each card you want to validate. No rate limits  seem to be in place for this, just make sure to not use a VPN
