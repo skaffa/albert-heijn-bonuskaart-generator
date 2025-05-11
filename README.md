@@ -14,14 +14,14 @@ This project generates fully valid Bonuskaart numbers using known valid prefix r
 
 ## Usage & Live Demo
 
-You can use the tool directly via the [live page](https://skaffa.github.io/albert-heijn-bonuskaart-generator).
-Originally developed in Python, the project was later ported to HTML/CSS/JavaScript for easier access and cross-device compatibility.
-
-To run the original Python script locally:
-
-1. Download `generator.py`
-2. Run it using Python 3:
-
+You can use the tool directly via the [live page](https://skaffa.github.io/albert-heijn-bonuskaart-generator).  
+Originally developed in Python, the project was later ported to HTML/CSS/JavaScript for easier access and cross-device compatibility.  
+  
+To run the original Python script locally:  
+  
+1. Download `generator.py`  
+2. Run it using Python 3:  
+  
    ```bash
    python3 generator.py
    ```
