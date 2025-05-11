@@ -6,11 +6,11 @@
 
 Albert Heijn Bonuskaart numbers follow the GTIN-13 format, starting with a fixed `26` prefix, followed by 11 digits that pass a checksum validation.
 
-> `26xxxxx xxxxxc`
-> `26` = static prefix
-> `xxxxx` = semi-logical prefix range (partially reverse engineered)
-> `xxxxx` = 5 random digits
-> `c` = checksum digit
+> `26xxxxx xxxxxc`  
+> `26` = static prefix  
+> `xxxxx` = semi-logical prefix range (partially reverse engineered)  
+> `xxxxx` = 5 random digits  
+> `c` = checksum digit  
 
 This project generates fully valid Bonuskaart numbers using known valid prefix ranges and proper checksum calculation.
 
