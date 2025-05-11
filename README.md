@@ -4,7 +4,7 @@
 
 ## In Short
 
-Albert Heijn Bonuskaart numbers follow the GTIN-13 format, starting with a fixed `26` prefix, followed by 11 digits that pass a checksum validation.
+Albert Heijn Bonuskaart numbers follow the GTIN-13/EAN-13 format, starting with a fixed `26` prefix, followed by 11 digits that pass a checksum validation.
 
 > `26xxxxx xxxxxc`  
 > `26` = static prefix  
