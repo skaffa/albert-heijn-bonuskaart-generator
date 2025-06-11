@@ -27,7 +27,6 @@ To run the original Python script locally:
    ```
 
 ## Info
-If you want to make sure for yourself that the codes are valid, go to https://www.ah.nl/klantenkaarten/bonuskaart and make an account. Then edit your card number for each card you want to validate. No rate limits  seem to be in place for this, just make sure to not use a VPN
-
+If you want to make sure for yourself that the codes are valid, go to https://www.ah.nl/klantenkaarten/bonuskaart and make an account. Then edit your card number for each card you want to validate. No rate limits  seem to be in place for this, just make sure to not use a VPN. During my tests, all codes generated with this script were valid, with no exceptions.
 ## Disclaimer
 For educational purposes only
