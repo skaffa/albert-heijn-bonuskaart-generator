@@ -1,4 +1,4 @@
-> [!CAUTION]
+> [!Warning]
 > It may be possible that you generate a code that is registered to a Premium member.  
 > This will cause you to pay more, in favour of the cardholder.  
 > So far this has happened twice to me, paying about 60 cents extra each.  
@@ -32,6 +32,8 @@ To run the original Python script locally:
    ```
 
 ## Info
-If you want to make sure for yourself that the codes are valid, go to https://www.ah.nl/klantenkaarten/bonuskaart and make an account. Then edit your card number for each card you want to validate. No rate limits  seem to be in place for this, just make sure to not use a VPN. During my tests, all codes generated with this script were valid, with no exceptions.
+If you want to make sure for yourself that the codes are valid, go to https://www.ah.nl/klantenkaarten/bonuskaart and make an account. Then edit your card number for each card you want to validate. No rate limits  seem to be in place for this, just make sure to not use a VPN. During my tests, all codes generated with this script were valid, with no exceptions.  
+Update: Even in the store it has worked every single time so far (about 20 times)
+
 ## Disclaimer
 For educational purposes only
