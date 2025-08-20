@@ -1,3 +1,8 @@
+> [!CAUTION]
+> It may be possible that you generate a code that is registered to a Premium member.
+> This will cause you to pay more, in favour of the cardholder.
+> So far this has happened twice to me, paying about 60 cents extra each.
+
 > I decided to try and reverse engineer the algorithm behind the Albert Heijn Bonuskaart.
 
 ## In short
