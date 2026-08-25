@@ -104,7 +104,7 @@
     .history-container {
       margin-top: 35px;
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 10px;
@@ -127,19 +127,42 @@
       font-weight: bold;
     }
 
-    .clear-btn {
+    .header-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-small {
       background: transparent;
-      border: 1px solid #f85149;
-      color: #f85149;
       padding: 4px 10px;
       font-size: 11px;
       border-radius: 4px;
       cursor: pointer;
       margin-top: 0;
       box-shadow: none;
+      font-family: inherit;
+      font-weight: bold;
+      transition: all 0.2s ease;
     }
 
-    .clear-btn:hover {
+    .btn-export {
+      border: 1px solid #00bfff;
+      color: #00bfff;
+    }
+
+    .btn-export:hover {
+      transform: none;
+      box-shadow: none;
+      background: #00bfff;
+      color: #0d1117;
+    }
+
+    .btn-clear {
+      border: 1px solid #f85149;
+      color: #f85149;
+    }
+
+    .btn-clear:hover {
       transform: none;
       box-shadow: none;
       background: #f85149;
@@ -150,7 +173,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      max-height: 250px;
+      max-height: 300px;
       overflow-y: auto;
     }
 
@@ -164,15 +187,196 @@
       border: 1px solid #21262d;
     }
 
+    .history-item.starred-item {
+      border-color: #e3b341;
+      background: rgba(227, 179, 65, 0.05);
+    }
+
+    .code-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .star-indicator {
+      color: #8b949e;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .star-indicator.active {
+      color: #e3b341;
+    }
+
     .code-display {
       font-weight: bold;
       color: #ffffff;
       font-size: 14px;
     }
 
-    .tag-options {
+    .use-count-badge {
+      font-size: 11px;
+      color: #8b949e;
+      background: #161b22;
+      padding: 2px 6px;
+      border-radius: 10px;
+      border: 1px solid #30363d;
+    }
+
+    .item-controls {
       display: flex;
+      align-items: center;
       gap: 8px;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      margin: 0;
+      box-shadow: none;
+    }
+
+    .btn-icon:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #00ffcc;
+      color: #00ffcc;
+    }
+
+    .btn-delete {
+      background: transparent;
+      border: 1px solid #30363d;
+      color: #8b949e;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      line-height: 1;
+      margin: 0;
+      box-shadow: none;
+    }
+
+    .btn-delete:hover {
+      transform: none;
+      box-shadow: none;
+      color: #f85149;
+      border-color: #f85149;
+      background: rgba(248, 81, 73, 0.1);
+    }
+
+    .empty-history {
+      text-align: center;
+      color: #484f58;
+      font-size: 13px;
+      padding: 10px 0;
+    }
+
+    /* Modal Base Styling */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(3px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #00ffcc;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .modal-text {
+      font-size: 13px;
+      color: #c9d1d9;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .modal-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 0;
+      box-shadow: none;
+    }
+
+    .modal-btn:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .modal-cancel {
+      background: #21262d;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
+    }
+
+    .modal-confirm {
+      background: #f85149;
+      color: #ffffff;
+    }
+
+    /* Details Modal Custom Layout */
+    .detail-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+    }
+
+    .detail-label {
+      color: #8b949e;
+    }
+
+    .tag-chips {
+      display: flex;
+      gap: 6px;
     }
 
     .chip {
@@ -180,7 +384,7 @@
       font-size: 11px;
       border-radius: 4px;
       border: 1px solid #30363d;
-      background: #161b22;
+      background: #0d1117;
       color: #8b949e;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -198,11 +402,43 @@
       border-color: #00ffcc;
     }
 
-    .empty-history {
+    .use-counter {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .counter-input {
+      width: 50px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      color: #ffffff;
       text-align: center;
-      color: #484f58;
-      font-size: 13px;
-      padding: 10px 0;
+      padding: 4px;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .btn-step {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      border-radius: 4px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-reuse {
+      width: 100%;
+      background: linear-gradient(145deg, #00ffcc, #00bfff);
+      color: #0d1117;
+      font-weight: bold;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
@@ -223,13 +459,59 @@
   <div class="history-container">
     <div class="history-header">
       <span class="history-title">Generated History</span>
-      <button class="clear-btn" onclick="clearHistory()">Clear</button>
+      <div class="header-actions">
+        <button class="btn-small btn-export" onclick="exportJSON()">Export JSON</button>
+        <button class="btn-small btn-clear" onclick="confirmClearAll()">Clear All</button>
+      </div>
     </div>
     <div id="historyList" class="history-list"></div>
   </div>
 
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle">Confirm Action</div>
+      <div class="modal-text" id="modalText">Are you sure you want to proceed?</div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-cancel" onclick="closeModal('confirmModal')">Cancel</button>
+        <button class="modal-btn modal-confirm" id="modalConfirmBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Entry Detail/Edit Modal -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-title" id="detailCodeDisplay">Code Options</div>
+      <div class="detail-section">
+        <div class="detail-row">
+          <span class="detail-label">Star / Favorite:</span>
+          <span id="detailStarBtn" class="star-indicator" style="font-size:20px;">★</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Attributes:</span>
+          <div class="tag-chips">
+            <span id="chipAirmiles" class="chip">Air Miles</span>
+            <span id="chipPremium" class="chip">Premium</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Times Used:</span>
+          <div class="use-counter">
+            <button class="btn-step" onclick="adjustUseCount(-1)">-</button>
+            <input type="number" id="detailUseInput" class="counter-input" min="0" onchange="manualUseCountChange(this.value)">
+            <button class="btn-step" onclick="adjustUseCount(1)">+</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn-reuse" onclick="reuseCurrentDetailCode()">Use / Render Barcode</button>
+      <div style="margin-top: 10px; text-align: center;">
+        <button class="btn-small btn-clear" style="border:none;" onclick="closeModal('detailModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Original Prefix Array
     const legacyPrefixes = [
       [2621100, 2621140],
       [2622000, 2622030],
@@ -237,7 +519,6 @@
       [2623013, 2623036]
     ];
 
-    // Newly Added Scanned Prefix Array
     const extendedPrefixes = [
       [2620577, 2620608],
       [2620612, 2620635],
@@ -271,12 +552,28 @@
 
     let currentMode = 'legacy';
     let cardHistory = JSON.parse(localStorage.getItem('bonuskaart_history') || '[]');
+    let pendingAction = null;
+    let activeDetailIndex = null;
 
     function setArrayMode(mode) {
       currentMode = mode;
       document.getElementById('btnLegacy').classList.toggle('active', mode === 'legacy');
       document.getElementById('btnExtended').classList.toggle('active', mode === 'extended');
       generateBonuskaart();
+    }
+
+    function renderBarcode(fullCode) {
+      JsBarcode("#barcode", fullCode, {
+        format: "EAN13",
+        displayValue: true,
+        font: "monospace",
+        fontSize: 20,
+        lineColor: "#000000",
+        background: "#ffffff",
+        width: 2,
+        height: 120,
+        margin: 10
+      });
     }
 
     function generateBonuskaart() {
@@ -300,45 +597,137 @@
       const checkDigit = (10 - (total % 10)) % 10;
       const fullCode = partial + checkDigit;
 
-      // Render barcode
-      JsBarcode("#barcode", fullCode, {
-        format: "EAN13",
-        displayValue: true,
-        font: "monospace",
-        fontSize: 20,
-        lineColor: "#000000",
-        background: "#ffffff",
-        width: 2,
-        height: 120,
-        margin: 10
-      });
+      renderBarcode(fullCode);
 
-      // Add generated code to history if unique
       if (!cardHistory.some(item => item.code === fullCode)) {
         cardHistory.unshift({
           code: fullCode,
           airmiles: false,
-          premium: false
+          premium: false,
+          starred: false,
+          uses: 0
         });
         saveHistory();
       }
       renderHistory();
     }
 
-    function toggleTag(index, type) {
-      cardHistory[index][type] = !cardHistory[index][type];
+    function openDetails(index) {
+      activeDetailIndex = index;
+      const item = cardHistory[index];
+
+      document.getElementById('detailCodeDisplay').innerText = item.code;
+      
+      const starBtn = document.getElementById('detailStarBtn');
+      starBtn.className = `star-indicator ${item.starred ? 'active' : ''}`;
+      starBtn.onclick = () => {
+        item.starred = !item.starred;
+        saveHistory();
+        openDetails(index);
+        renderHistory();
+      };
+
+      const chipAirmiles = document.getElementById('chipAirmiles');
+      chipAirmiles.className = `chip ${item.airmiles ? 'active-airmiles' : ''}`;
+      chipAirmiles.onclick = () => {
+        item.airmiles = !item.airmiles;
+        saveHistory();
+        openDetails(index);
+        renderHistory();
+      };
+
+      const chipPremium = document.getElementById('chipPremium');
+      chipPremium.className = `chip ${item.premium ? 'active-premium' : ''}`;
+      chipPremium.onclick = () => {
+        item.premium = !item.premium;
+        saveHistory();
+        openDetails(index);
+        renderHistory();
+      };
+
+      document.getElementById('detailUseInput').value = item.uses || 0;
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    function adjustUseCount(delta) {
+      if (activeDetailIndex === null) return;
+      const item = cardHistory[activeDetailIndex];
+      item.uses = Math.max(0, (item.uses || 0) + delta);
+      document.getElementById('detailUseInput').value = item.uses;
       saveHistory();
       renderHistory();
+    }
+
+    function manualUseCountChange(val) {
+      if (activeDetailIndex === null) return;
+      const parsed = parseInt(val, 10);
+      cardHistory[activeDetailIndex].uses = isNaN(parsed) ? 0 : Math.max(0, parsed);
+      saveHistory();
+      renderHistory();
+    }
+
+    function reuseCurrentDetailCode() {
+      if (activeDetailIndex === null) return;
+      const item = cardHistory[activeDetailIndex];
+      item.uses = (item.uses || 0) + 1;
+      renderBarcode(item.code);
+      saveHistory();
+      renderHistory();
+      closeModal('detailModal');
+    }
+
+    function confirmDeleteOne(index) {
+      const code = cardHistory[index].code;
+      showConfirmModal('Delete Entry', `Are you sure you want to delete ${code}?`, () => {
+        cardHistory.splice(index, 1);
+        saveHistory();
+        renderHistory();
+      });
+    }
+
+    function confirmClearAll() {
+      if (cardHistory.length === 0) return;
+      showConfirmModal('Clear Entire History', 'Are you sure you want to delete all entries?', () => {
+        cardHistory = [];
+        saveHistory();
+        renderHistory();
+      });
+    }
+
+    function showConfirmModal(title, text, action) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalText').innerText = text;
+      pendingAction = action;
+      document.getElementById('confirmModal').classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      if (id === 'confirmModal') pendingAction = null;
+      if (id === 'detailModal') activeDetailIndex = null;
+    }
+
+    document.getElementById('modalConfirmBtn').addEventListener('click', () => {
+      if (pendingAction) pendingAction();
+      closeModal('confirmModal');
+    });
+
+    function exportJSON() {
+      if (cardHistory.length === 0) {
+        alert("History is empty. Nothing to export.");
+        return;
+      }
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cardHistory, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `bonuskaart_history_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
     }
 
     function saveHistory() {
       localStorage.setItem('bonuskaart_history', JSON.stringify(cardHistory));
-    }
-
-    function clearHistory() {
-      cardHistory = [];
-      saveHistory();
-      renderHistory();
     }
 
     function renderHistory() {
@@ -348,19 +737,29 @@
         return;
       }
 
-      container.innerHTML = cardHistory.map((item, index) => `
-        <div class="history-item">
-          <span class="code-display">${item.code}</span>
-          <div class="tag-options">
-            <span class="chip ${item.airmiles ? 'active-airmiles' : ''}" onclick="toggleTag(${index}, 'airmiles')">
-              Air Miles
-            </span>
-            <span class="chip ${item.premium ? 'active-premium' : ''}" onclick="toggleTag(${index}, 'premium')">
-              Premium
-            </span>
+      // Sort starred entries to the top
+      const sortedHistory = cardHistory.map((item, originalIndex) => ({ ...item, originalIndex }))
+        .sort((a, b) => (b.starred ? 1 : 0) - (a.starred ? 1 : 0));
+
+      container.innerHTML = sortedHistory.map((item) => `
+        <div class="history-item ${item.starred ? 'starred-item' : ''}">
+          <div class="code-info">
+            <span class="star-indicator ${item.starred ? 'active' : ''}" onclick="toggleStar(${item.originalIndex})">★</span>
+            <span class="code-display">${item.code}</span>
+            <span class="use-count-badge">${item.uses || 0}x</span>
+          </div>
+          <div class="item-controls">
+            <button class="btn-icon" onclick="openDetails(${item.originalIndex})">⚙ Manage</button>
+            <button class="btn-delete" onclick="confirmDeleteOne(${item.originalIndex})" title="Delete">✕</button>
           </div>
         </div>
       `).join('');
+    }
+
+    function toggleStar(index) {
+      cardHistory[index].starred = !cardHistory[index].starred;
+      saveHistory();
+      renderHistory();
     }
 
     window.onload = () => {
