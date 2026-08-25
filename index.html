@@ -24,21 +24,66 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 100vh;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 15px;
+      font-size: 24px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px #00bfff;
+    }
+
+    /* Toggle Selector Controls */
+    .toggle-container {
+      margin-top: 20px;
+      display: flex;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .toggle-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #8b949e;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: none;
+      margin-top: 0;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      transform: none;
+      box-shadow: none;
+      color: #c9d1d9;
+    }
+
+    .toggle-btn.active {
+      color: #0d1117;
+      background: linear-gradient(145deg, #00ffcc, #00bfff);
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
     }
 
     #barcode {
       background-color: #ffffff;
-      margin-top: 40px;
+      margin-top: 25px;
       padding: 10px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
       width: 90%;
+      max-width: 400px;
     }
 
-    button {
-      margin-top: 30px;
-      padding: 12px 24px;
+    .action-btn {
+      margin-top: 20px;
+      padding: 12px 28px;
       font-size: 16px;
       font-weight: bold;
       color: #0d1117;
@@ -50,35 +95,193 @@
       transition: transform 0.1s ease, box-shadow 0.2s ease;
     }
 
-    button:hover {
+    .action-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px #00ffc8, 0 0 30px #00bfff inset;
     }
 
-    h1 {
-      margin-top: 30px;
-      font-size: 22px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 5px #00bfff;
+    /* History Section Styling */
+    .history-container {
+      margin-top: 35px;
+      width: 100%;
+      max-width: 480px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 8px;
+    }
+
+    .history-title {
+      font-size: 16px;
+      color: #00ffcc;
+      font-weight: bold;
+    }
+
+    .clear-btn {
+      background: transparent;
+      border: 1px solid #f85149;
+      color: #f85149;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0;
+      box-shadow: none;
+    }
+
+    .clear-btn:hover {
+      transform: none;
+      box-shadow: none;
+      background: #f85149;
+      color: #ffffff;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0d1117;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #21262d;
+    }
+
+    .code-display {
+      font-weight: bold;
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    .tag-options {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 4px 8px;
+      font-size: 11px;
+      border-radius: 4px;
+      border: 1px solid #30363d;
+      background: #161b22;
+      color: #8b949e;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip.active-airmiles {
+      background: rgba(255, 165, 0, 0.2);
+      color: #ffa500;
+      border-color: #ffa500;
+    }
+
+    .chip.active-premium {
+      background: rgba(0, 255, 204, 0.2);
+      color: #00ffcc;
+      border-color: #00ffcc;
+    }
+
+    .empty-history {
+      text-align: center;
+      color: #484f58;
+      font-size: 13px;
+      padding: 10px 0;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
   <h1>Bonuskaart</h1>
+
+  <!-- Array Selector Toggle -->
+  <div class="toggle-container">
+    <button id="btnLegacy" class="toggle-btn active" onclick="setArrayMode('legacy')">Legacy Prefixes</button>
+    <button id="btnExtended" class="toggle-btn" onclick="setArrayMode('extended')">Extended Prefixes</button>
+  </div>
+
   <svg id="barcode"></svg>
-  <button onclick="generateBonuskaart()">Renew</button>
+  <button class="action-btn" onclick="generateBonuskaart()">Renew</button>
+
+  <!-- History Log Section -->
+  <div class="history-container">
+    <div class="history-header">
+      <span class="history-title">Generated History</span>
+      <button class="clear-btn" onclick="clearHistory()">Clear</button>
+    </div>
+    <div id="historyList" class="history-list"></div>
+  </div>
 
   <script>
-    function generateBonuskaart() {
-      const validPrefixes = [
-        [2621100, 2621140],
-        [2622000, 2622030],
-        [2622200, 2622270],
-        [2623013, 2623036]
-      ];
+    // Original Prefix Array
+    const legacyPrefixes = [
+      [2621100, 2621140],
+      [2622000, 2622030],
+      [2622200, 2622270],
+      [2623013, 2623036]
+    ];
 
-      const range = validPrefixes[Math.floor(Math.random() * validPrefixes.length)];
+    // Newly Added Scanned Prefix Array
+    const extendedPrefixes = [
+      [2620577, 2620608],
+      [2620612, 2620635],
+      [2620645, 2620646],
+      [2620653, 2620661],
+      [2620719, 2620732],
+      [2620741, 2620757],
+      [2620764, 2620771],
+      [2621102, 2621102],
+      [2621107, 2621117],
+      [2621129, 2621141],
+      [2621182, 2621186],
+      [2621600, 2621613],
+      [2621631, 2621659],
+      [2621932, 2622031],
+      [2622173, 2622189],
+      [2622199, 2622233],
+      [2622235, 2622262],
+      [2622597, 2622611],
+      [2622620, 2622624],
+      [2622634, 2622662],
+      [2622664, 2622681],
+      [2622691, 2622692],
+      [2622694, 2622708],
+      [2622710, 2622723],
+      [2622725, 2622734],
+      [2622736, 2622763],
+      [2623013, 2623056],
+      [2623070, 2623095]
+    ];
+
+    let currentMode = 'legacy';
+    let cardHistory = JSON.parse(localStorage.getItem('bonuskaart_history') || '[]');
+
+    function setArrayMode(mode) {
+      currentMode = mode;
+      document.getElementById('btnLegacy').classList.toggle('active', mode === 'legacy');
+      document.getElementById('btnExtended').classList.toggle('active', mode === 'extended');
+      generateBonuskaart();
+    }
+
+    function generateBonuskaart() {
+      const activeArray = currentMode === 'legacy' ? legacyPrefixes : extendedPrefixes;
+      const range = activeArray[Math.floor(Math.random() * activeArray.length)];
       const prefix = (Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0]).toString();
 
       let body = '';
@@ -97,6 +300,7 @@
       const checkDigit = (10 - (total % 10)) % 10;
       const fullCode = partial + checkDigit;
 
+      // Render barcode
       JsBarcode("#barcode", fullCode, {
         format: "EAN13",
         displayValue: true,
@@ -108,9 +312,61 @@
         height: 120,
         margin: 10
       });
+
+      // Add generated code to history if unique
+      if (!cardHistory.some(item => item.code === fullCode)) {
+        cardHistory.unshift({
+          code: fullCode,
+          airmiles: false,
+          premium: false
+        });
+        saveHistory();
+      }
+      renderHistory();
     }
 
-    window.onload = generateBonuskaart;
+    function toggleTag(index, type) {
+      cardHistory[index][type] = !cardHistory[index][type];
+      saveHistory();
+      renderHistory();
+    }
+
+    function saveHistory() {
+      localStorage.setItem('bonuskaart_history', JSON.stringify(cardHistory));
+    }
+
+    function clearHistory() {
+      cardHistory = [];
+      saveHistory();
+      renderHistory();
+    }
+
+    function renderHistory() {
+      const container = document.getElementById('historyList');
+      if (cardHistory.length === 0) {
+        container.innerHTML = '<div class="empty-history">No generated cards in history.</div>';
+        return;
+      }
+
+      container.innerHTML = cardHistory.map((item, index) => `
+        <div class="history-item">
+          <span class="code-display">${item.code}</span>
+          <div class="tag-options">
+            <span class="chip ${item.airmiles ? 'active-airmiles' : ''}" onclick="toggleTag(${index}, 'airmiles')">
+              Air Miles
+            </span>
+            <span class="chip ${item.premium ? 'active-premium' : ''}" onclick="toggleTag(${index}, 'premium')">
+              Premium
+            </span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.onload = () => {
+      renderHistory();
+      generateBonuskaart();
+    };
   </script>
 </body>
 </html>
